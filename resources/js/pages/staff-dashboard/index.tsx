@@ -5,11 +5,10 @@ import { Toaster } from 'react-hot-toast';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
-        title: 'Verifikasi Pengajuan',
-        href: '/verifikasi-pengajuan',
+        title: 'Dashboard',
+        href: '/dashboard',
     },
 ];
-
 
 export default function Dashboard() {
 

@@ -3,6 +3,7 @@
 use Illuminate\Foundation\Application;
 use App\Http\Middleware\RestrictToRoles;
 use App\Http\Middleware\HandleAppearance;
+use App\Http\Middleware\RedirectBasedOnRole;
 use App\Http\Middleware\HandleInertiaRequests;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
@@ -26,6 +27,7 @@ return Application::configure(basePath: dirname(__DIR__))
         // Register middleware alias for RestrictToRoles
         $middleware->alias([
             'restrict.to.roles' => RestrictToRoles::class,
+            'redirect.based.on.role' => RedirectBasedOnRole::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
