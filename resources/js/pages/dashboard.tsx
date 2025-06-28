@@ -16,7 +16,7 @@ interface Payment {
     id: number;
     title: string;
     subtitle: string;
-    status: 'pending' | 'complete';
+    status: 'Menunggu' | 'Berhasil';
     created_at: string;
 }
 
@@ -25,25 +25,25 @@ interface DashboardProps {
     user_name?: string;
 }
 
-const StatusBadge = ({ status }: { status: 'pending' | 'complete' }) => {
+const StatusBadge = ({ status }: { status: 'Menunggu' | 'Berhasil' }) => {
     return (
         <Badge
-            variant={status === 'complete' ? 'default' : 'secondary'}
+            variant={status === 'Berhasil' ? 'default' : 'secondary'}
             className={
-                status === 'complete'
+                status === 'Berhasil'
                     ? 'bg-green-100 text-green-800 hover:bg-green-200 border-green-200'
                     : 'bg-yellow-100 text-yellow-800 hover:bg-yellow-200 border-yellow-200'
             }
         >
-            {status === 'complete' ? 'Selesai' : 'Menunggu'}
+            {status}
         </Badge>
     );
 };
 
 export default function Dashboard({ payments = [], user_name = 'Pengguna' }: DashboardProps) {
     const totalPayments = payments.length;
-    const paidPayments = payments.filter((p) => p.status === 'complete').length;
-    const pendingPayments = payments.filter((p) => p.status === 'pending').length;
+    const paidPayments = payments.filter((p) => p.status === 'Berhasil').length;
+    const pendingPayments = payments.filter((p) => p.status === 'Menunggu').length;
 
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
@@ -76,7 +76,7 @@ export default function Dashboard({ payments = [], user_name = 'Pengguna' }: Das
                                 <CardContent className="pt-0">
                                     <div className="flex justify-between items-center">
                                         <span className="text-xs">
-                                            {card.status === 'complete' ? 'Dibayar' : 'Belum dibayar'}
+                                            {card.status === 'Berhasil' ? 'Dibayar' : 'Belum dibayar'}
                                         </span>
                                     </div>
                                     <div className="text-sm mt-1">{card.created_at}</div>

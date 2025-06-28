@@ -18,7 +18,7 @@ interface Payment {
     nama_lengkap: string;
     kelas: string;
     jenis_iuran: string;
-    status: 'pending' | 'approved' | 'rejected';
+    status: 'Menunggu' | 'Berhasil';
     periode_pembayaran: string;
 }
 
@@ -26,19 +26,17 @@ interface HistoryProps {
     payments: Payment[];
 }
 
-const StatusBadge = ({ status }: { status: 'pending' | 'approved' | 'rejected' }) => {
+const StatusBadge = ({ status }: { status: 'Menunggu' | 'Berhasil' }) => {
     return (
         <Badge
-            variant={status === 'approved' ? 'default' : status === 'rejected' ? 'destructive' : 'secondary'}
+            variant={status === 'Berhasil' ? 'default' : 'secondary'}
             className={
-                status === 'approved'
-                    ? 'bg-green-100 text-green-800 hover:bg-green-200'
-                    : status === 'rejected'
-                        ? 'bg-red-100 text-red-800 hover:bg-red-200'
-                        : 'bg-yellow-100 text-yellow-800 hover:bg-yellow-200'
+                status === 'Berhasil'
+                    ? 'bg-green-100 text-green-800 hover:bg-green-200 border-green-200'
+                    : 'bg-yellow-100 text-yellow-800 hover:bg-yellow-200 border-yellow-200'
             }
         >
-            {status === 'approved' ? 'Disetujui' : status === 'rejected' ? 'Ditolak' : 'Menunggu'}
+            {status}
         </Badge>
     );
 };
